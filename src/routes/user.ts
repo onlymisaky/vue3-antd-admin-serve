@@ -1,9 +1,10 @@
-var express = require('express');
-const { resp } = require('../resp');
-var router = express.Router();
+import * as express from 'express';
+import { Result } from '../utils/result';
 
-router.get('/', function (req, res, next) {
-  res.json(resp({
+const router = express.Router();
+
+router.get('/', (req, res) => {
+  res.json(Result.ok({
     permissions: [
       'article:view',
       'article:add',
@@ -17,7 +18,9 @@ router.get('/', function (req, res, next) {
     channelIds: [],
     isBinding: true,
     bindStatus: true,
-  }))
+  }));
 });
 
-module.exports = router;
+export {
+  router as userRoute,
+};
